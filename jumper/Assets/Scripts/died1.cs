@@ -35,7 +35,10 @@ public class died1 : MonoBehaviour {
 		buttondown.SetActive(false);
 
 		audio.PlayOneShot(died, 3.0F);
-
+		
+		Everyplay.StopRecording();
+		//Everyplay.SetMetadata("score", score);
+		//Everyplay.PlayLastRecording();
 
 		}
 

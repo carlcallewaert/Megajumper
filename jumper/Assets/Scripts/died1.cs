@@ -38,7 +38,7 @@ public class died1 : MonoBehaviour {
 		
 		Everyplay.StopRecording();
 		//Everyplay.SetMetadata("score", score);
-		//Everyplay.PlayLastRecording();
+		Everyplay.PlayLastRecording();
 
 		}
 

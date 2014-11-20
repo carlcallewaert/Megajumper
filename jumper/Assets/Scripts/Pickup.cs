@@ -30,7 +30,7 @@ public class Pickup : MonoBehaviour
 			audio.PlayOneShot(CollectSound);
 			Instantiate (particle, col.transform.position, col.transform.rotation );
 
-			//Everyplay.SetMetadata("score", score);
+			Everyplay.SetMetadata("score", score);
 
 		}
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class died1 : MonoBehaviour {
@@ -35,13 +35,15 @@ public class died1 : MonoBehaviour {
 		buttondown.SetActive(false);
 
 		audio.PlayOneShot(died, 3.0F);
-		
-		Everyplay.StopRecording();
-		//Everyplay.SetMetadata("score", score);
-		//Everyplay.PlayLastRecording();
 
+			// wait 2 second to stop recording
+			Invoke ("StopRecording", 2f);
+			
 		}
-
-
-}
+	}
+	
+	void StopRecording()
+	{
+		Everyplay.StopRecording();
+	}
 }

@@ -140,7 +140,12 @@ public class EveryplayLegacyCleanup : AssetPostprocessor
             "Plugins/Everyplay/iOS/Everyplay.bundle/slider-trackBackground@2x.png",
             "Plugins/Everyplay/iOS/Everyplay.bundle/splash-screen-bg.jpg",
             "Plugins/Everyplay/iOS/Everyplay.bundle/topbar-shadow.png",
-            "Plugins/Everyplay/iOS/Everyplay.bundle/topbar-shadow@2x.png"
+            "Plugins/Everyplay/iOS/Everyplay.bundle/topbar-shadow@2x.png",
+            "Plugins/Android/everyplay/res/drawable/everyplay_sidemenu_bg.png",
+            "Plugins/Android/everyplay/res/drawable/everyplay_sidemenu_button_bg.png",
+            "Plugins/Android/everyplay/res/drawable/everyplay_sidemenu_button_bg_active.png",
+            "Plugins/Android/everyplay/res/values/everyplay_dimens.xml",
+            "Plugins/Android/everyplay/res/values/everyplay_values.xml"
     };
     private const string oldPrefab = "Plugins/Everyplay/Everyplay.prefab";
     private const string newTestPrefab = "Plugins/Everyplay/Helpers/EveryplayTest.prefab";

@@ -69,9 +69,11 @@
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_editor_buttons.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_editor_trimmer.xml" />
      <None Include="Assets\Plugins\Android\everyplay\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_theme_sidemenu_button.xml" />
      <None Include="Assets\Plugins\Android\unityads\build.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_action_list_cancel.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_video_endscreen_video.xml" />
+     <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_theme_button_background.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_video_button_bar.xml" />
      <None Include="Assets\Plugins\Android\everyplay\build.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_text_input_background.xml" />
@@ -79,8 +81,10 @@
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_video_header_install_button.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_video_endscreen.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_editor_trimmer_background_track.xml" />
+     <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_sidemenu_grouplabel.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_social_layout.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\values\everyplay_strings.xml" />
+     <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_button_shape.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_editor_trimmer_handle.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_video_buttonbar_button.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_video_endscreen_install_button.xml" />
@@ -90,7 +94,6 @@
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_action_list_destructive.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_video_facecam_bg.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_editor_trimmer_tracker_button_pressed.xml" />
-     <None Include="Assets\Plugins\Android\everyplay\res\values\everyplay_values.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\values-ko\everyplay_strings.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_video_timeline.xml" />
      <None Include="Assets\link.xml" />
@@ -98,7 +101,6 @@
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_video_timeline_tracker_button.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\values\everyplay_themes.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_topbar_menubutton.xml" />
-     <None Include="Assets\Plugins\Android\everyplay\res\values\everyplay_dimens.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_browser_layout.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_video_facecam.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_action_list_option.xml" />
@@ -112,6 +114,7 @@
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_editor_trimmer_tracker_button.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_sidemenu_button.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_topbar_background.xml" />
+     <None Include="Assets\Plugins\Android\everyplay\res\values\everyplay_styles.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_browser_button_forward.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_action_list.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_video_microphone.xml" />
@@ -131,8 +134,10 @@
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_editor_processing.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_sidemenu_button.xml" />
      <None Include="Assets\Plugins\Everyplay\Helpers\Shaders\EveryplayCrossfade.shader" />
+     <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_theme_sidemenu_background.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_text_input.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_auth_layout.xml" />
+     <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_theme_distinct_button_background.xml" />
      <None Include="Assets\Plugins\Android\unityads\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_slimprogressbar.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_progressbar_horizontal.xml" />

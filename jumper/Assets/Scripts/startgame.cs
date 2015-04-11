@@ -16,7 +16,7 @@ public class startgame : MonoBehaviour {
 
 	public void Restartgame() {
 		// restart the loaded level.
-		Application.LoadLevel("001");
+		Application.LoadLevel("level1");
 	}
 
 }

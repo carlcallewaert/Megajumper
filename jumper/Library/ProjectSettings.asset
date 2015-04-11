@@ -74,7 +74,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: www.fundi3d.shootertest
+  bundleIdentifier: unity3d.com.servicegame
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0

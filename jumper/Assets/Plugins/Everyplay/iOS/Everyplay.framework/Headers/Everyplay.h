@@ -119,6 +119,8 @@ NS_CLASS_AVAILABLE(10_7, 4_0)
 - (void)everyplayThumbnailReadyAtURL:(NSURL *)thumbnailUrl;
 
 - (void)everyplayThumbnailReadyAtTextureId:(NSNumber *)textureId portraitMode:(NSNumber *)portrait;
+- (void)everyplayMetalThumbnailReadyAtTexture:(id)texture portraitMode:(NSNumber *)portrait;
+
 @end
 
 NS_CLASS_AVAILABLE(10_7, 4_0)
@@ -128,9 +130,9 @@ NS_CLASS_AVAILABLE(10_7, 4_0)
 @property (nonatomic, unsafe_unretained) EveryplayCapture *capture;
 @property (nonatomic, strong) EveryplayFaceCam *faceCam;
 #if TARGET_OS_IPHONE
-@property (nonatomic, strong) UIViewController *parentViewController;
+@property (nonatomic, weak) UIViewController *parentViewController;
 #endif
-@property (nonatomic, strong) id <EveryplayDelegate> everyplayDelegate;
+@property (nonatomic, weak) id <EveryplayDelegate> everyplayDelegate;
 @property (nonatomic, assign) EveryplayFlowDefs flowControl;
 
 #pragma mark - Singleton

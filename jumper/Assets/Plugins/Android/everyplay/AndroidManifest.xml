@@ -3,7 +3,8 @@
   <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-  <application android:label="@string/everyplay_app_name" android:debuggable="false">
+  <!-- android:label="@string/everyplay_app_name" -->
+  <application >
        <activity
          android:name="com.everyplay.Everyplay.view.EveryplaySocialActivity" 
            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
@@ -18,7 +19,7 @@
            android:theme="@android:style/Theme.NoTitleBar"
            android:windowSoftInputMode="stateVisible|adjustResize"
            android:screenOrientation="sensor"
-           android:hardwareAccelerated="true" />
+           android:hardwareAccelerated="false" />
        
        <activity
          android:name="com.everyplay.Everyplay.view.videoplayer.EveryplayVideoPlayerActivity"
@@ -51,21 +52,21 @@
            android:theme="@android:style/Theme.NoTitleBar"
            android:windowSoftInputMode="adjustResize"
            android:screenOrientation="sensor"
-           android:hardwareAccelerated="true" />
+           android:hardwareAccelerated="false" />
        
        <activity
          android:name="com.everyplay.Everyplay.view.auth.EveryplayAuthActivity"
            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
            android:theme="@android:style/Theme.NoTitleBar"
            android:screenOrientation="sensor"
-           android:hardwareAccelerated="true"
+           android:hardwareAccelerated="false"
            android:windowSoftInputMode="adjustResize" />
        
        <activity
          android:name="com.everyplay.Everyplay.view.auth.EveryplayAddConnectionActivity"
            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
            android:theme="@android:style/Theme.Dialog"
-           android:hardwareAccelerated="true"
+           android:hardwareAccelerated="false"
            android:screenOrientation="sensor"
            android:windowSoftInputMode="adjustResize" />
        
@@ -73,7 +74,7 @@
          android:name="com.everyplay.Everyplay.communication.socialnetworks.EveryplayFacebook"
            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
            android:theme="@android:style/Theme.Dialog"
-           android:hardwareAccelerated="true"
+           android:hardwareAccelerated="false"
            android:screenOrientation="sensor"
            android:windowSoftInputMode="adjustResize" />
        
@@ -83,7 +84,7 @@
   </application>
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-feature android:name="android.hardware.touchscreen" />
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
   <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
   <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />

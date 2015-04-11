@@ -255,7 +255,7 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: DefaultPackerPolicy
   scriptingDefineSymbols:
-    4: 
+    4: EVERYPLAY_IPHONE
     7: 
   metroPackageName: 2D_test
   metroPackageLogo: 

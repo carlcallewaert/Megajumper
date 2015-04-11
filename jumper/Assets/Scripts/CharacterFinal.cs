@@ -61,7 +61,7 @@ public class CharacterFinal : MonoBehaviour
 	{
 
 		//if died that 
-		rigidbody2D.velocity = new Vector2(movementSpeed, rigidbody2D.velocity.y );
+		GetComponent<Rigidbody2D>().velocity = new Vector2(movementSpeed, GetComponent<Rigidbody2D>().velocity.y );
 		//else
 		//moving
 	
@@ -70,7 +70,7 @@ public class CharacterFinal : MonoBehaviour
 		if(jump == true)
 		{
 			// Add a vertical force to the player.
-			rigidbody2D.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
 			
 			// We set the variable to false again to avoid adding force constantly
 			jump = false;

@@ -7,7 +7,7 @@ public class buttonaudio : MonoBehaviour {
 
 	
 	public void Clickbutton () {
-		audio.PlayOneShot(click, 3.5F);
+		GetComponent<AudioSource>().PlayOneShot(click, 3.5F);
 	}
 	
 }

@@ -5,6 +5,8 @@ Project("{15CCA272-677A-324B-0459-C65600F72118}") = "2D_test_with_Ads", "Assembl
 EndProject
 Project("{15CCA272-677A-324B-0459-C65600F72118}") = "2D_test_with_Ads", "Assembly-CSharp.csproj", "{6670D4A4-417C-81E3-AC43-E5BB0F057EFB}"
 EndProject
+Project("{15CCA272-677A-324B-0459-C65600F72118}") = "2D_test_with_Ads", "Assembly-CSharp-Editor-firstpass.csproj", "{D7ADCEBF-D03D-9EA4-662B-FF1DD3657DF2}"
+EndProject
 Project("{15CCA272-677A-324B-0459-C65600F72118}") = "2D_test_with_Ads", "Assembly-CSharp-Editor.csproj", "{597FF5F0-7B28-519B-8948-4A14CE1EC354}"
 EndProject
 Project("{15CCA272-677A-324B-0459-C65600F72118}") = "2D_test_with_Ads", "Assembly-UnityScript.unityproj", "{E3171A24-1232-A4DA-9E10-3832F8EF8D58}"
@@ -23,6 +25,10 @@ Global
 		{6670D4A4-417C-81E3-AC43-E5BB0F057EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6670D4A4-417C-81E3-AC43-E5BB0F057EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6670D4A4-417C-81E3-AC43-E5BB0F057EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7ADCEBF-D03D-9EA4-662B-FF1DD3657DF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7ADCEBF-D03D-9EA4-662B-FF1DD3657DF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7ADCEBF-D03D-9EA4-662B-FF1DD3657DF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7ADCEBF-D03D-9EA4-662B-FF1DD3657DF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{597FF5F0-7B28-519B-8948-4A14CE1EC354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{597FF5F0-7B28-519B-8948-4A14CE1EC354}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{597FF5F0-7B28-519B-8948-4A14CE1EC354}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,7 +41,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																											GlobalSection(MonoDevelopProperties) = preSolution
+																																																																							GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

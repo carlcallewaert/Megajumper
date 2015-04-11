@@ -10,6 +10,9 @@ public class EveryplaySettingsEditor : Editor
     public const string settingsFile = "EveryplaySettings";
     public const string settingsFileExtension = ".asset";
     public const string testButtonsResourceFile = "everyplay-test-buttons.png";
+    private const BuildTarget kBuildTargetIOS = (BuildTarget)9; // Avoid automatic API updater dialog (iPhone -> iOS)
+    private const BuildTargetGroup kBuildTargetGroupIOS = (BuildTargetGroup)4; // Avoid automatic API updater dialog (iPhone -> iOS)
+
     private static GUIContent labelClientId = new GUIContent("Client id");
     private static GUIContent labelClientSecret = new GUIContent("Client secret");
     private static GUIContent labelRedirectURI = new GUIContent("Redirect URI");
@@ -24,7 +27,7 @@ public class EveryplaySettingsEditor : Editor
     [MenuItem("Edit/Everyplay Settings")]
     public static void ShowSettings()
     {
-        EveryplaySettings settingsInstance = (EveryplaySettings)Resources.Load(settingsFile);
+        EveryplaySettings settingsInstance = LoadEveryplaySettings();
 
         if(settingsInstance == null) {
             settingsInstance = CreateEveryplaySettings();
@@ -50,6 +53,8 @@ public class EveryplaySettingsEditor : Editor
             bool showAndroidSettings = CheckForAndroidSDK();
 
             if(currentSettings != null) {
+                bool settingsValid = currentSettings.IsValid;
+
                 EditorGUILayout.HelpBox("1) Enter your game credentials", MessageType.None);
 
                 if(!currentSettings.IsValid) {
@@ -75,11 +80,14 @@ public class EveryplaySettingsEditor : Editor
 
                 EditorGUILayout.BeginVertical();
 
+                bool validityChanged = currentSettings.IsValid != settingsValid;
+                bool selectedPlatformsChanged = false;
+
                 iosSupportEnabled = EditorGUILayout.Toggle(labelIOsSupport, currentSettings.iosSupportEnabled);
 
                 if(iosSupportEnabled != currentSettings.iosSupportEnabled) {
+                    selectedPlatformsChanged  = true;
                     currentSettings.iosSupportEnabled = iosSupportEnabled;
-                    EveryplayPostprocessor.SetEveryplayEnabledForTarget(BuildTargetGroup.iPhone, currentSettings.iosSupportEnabled);
                     EditorUtility.SetDirty(currentSettings);
                 }
 
@@ -87,10 +95,14 @@ public class EveryplaySettingsEditor : Editor
                     androidSupportEnabled = EditorGUILayout.Toggle(labelAndroidSupport, currentSettings.androidSupportEnabled);
 
                     if(androidSupportEnabled != currentSettings.androidSupportEnabled) {
+                        selectedPlatformsChanged  = true;
                         currentSettings.androidSupportEnabled = androidSupportEnabled;
-                        EveryplayPostprocessor.SetEveryplayEnabledForTarget(BuildTargetGroup.Android, currentSettings.androidSupportEnabled);
                         EditorUtility.SetDirty(currentSettings);
                     }
+                }
+
+                if(validityChanged || selectedPlatformsChanged) {
+                    EveryplayPostprocessor.ValidateEveryplayState(currentSettings);
                 }
 
                 EditorGUILayout.EndVertical();
@@ -140,8 +152,15 @@ public class EveryplaySettingsEditor : Editor
         return null;
     }
 
-    public void EnableTestButtons(bool enable) {
+    public static EveryplaySettings LoadEveryplaySettings()
+    {
+        return (EveryplaySettings)Resources.Load(settingsFile);
+    }
+
+    public void EnableTestButtons(bool enable)
+    {
         string dstFile = "Plugins/Everyplay/Resources/" + testButtonsResourceFile;
+
         if(enable) {
             string sourceFile = "Plugins/Everyplay/Images/" + testButtonsResourceFile;
             if(!File.Exists(System.IO.Path.Combine(Application.dataPath, dstFile)) && File.Exists(System.IO.Path.Combine(Application.dataPath, sourceFile))) {

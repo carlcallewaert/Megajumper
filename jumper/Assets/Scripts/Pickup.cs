@@ -27,7 +27,7 @@ public class Pickup : MonoBehaviour
 			// 
 			scoretext.text = "" + score;
 			scoretextfinal.text = "" + score;
-			audio.PlayOneShot(CollectSound);
+			GetComponent<AudioSource>().PlayOneShot(CollectSound);
 			Instantiate (particle, col.transform.position, col.transform.rotation );
 
 			Everyplay.SetMetadata("score", score);

@@ -8,16 +8,16 @@ public class characteraudio : MonoBehaviour {
 	public AudioClip jumpdown;
 	
 	public void Footset () {
-		audio.PlayOneShot(footstep, 10.0F);
+		GetComponent<AudioSource>().PlayOneShot(footstep, 10.0F);
 	}
 
 
 
 	public void Jump () {
-		audio.PlayOneShot(jump, 1.0F);
+		GetComponent<AudioSource>().PlayOneShot(jump, 1.0F);
 	}
 
 	public void JumpDown () {
-		audio.PlayOneShot(jumpdown, 2.0F);
+		GetComponent<AudioSource>().PlayOneShot(jumpdown, 2.0F);
 	}
 }

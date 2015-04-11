@@ -7,7 +7,7 @@ public class menuaudio : MonoBehaviour {
 
 	
 	public void Menupopup () {
-		audio.PlayOneShot(menupopup, 1.5F);
+		GetComponent<AudioSource>().PlayOneShot(menupopup, 1.5F);
 	}
 	
 }

@@ -9,22 +9,27 @@ public class EveryplayWelcome : EditorWindow
 
     public static void ShowWelcome()
     {
-        Texture2D texture = (Texture2D)EditorGUIUtility.Load("Everyplay/Images/everyplay-welcome.png");
+        if(!EditorPrefs.HasKey("EveryplayWelcomeShown")) {
+            Texture2D texture = (Texture2D)EditorGUIUtility.Load("Everyplay/Images/everyplay-welcome.png");
 
-        if(texture != null) {
-            GUIStyle style = new GUIStyle();
-            style.margin = new RectOffset(0, 0, 0, 0);
-            style.padding = new RectOffset(0, 0, 0, 0);
-            style.alignment = TextAnchor.MiddleCenter;
+            if(texture != null) {
+                GUIStyle style = new GUIStyle();
+                style.margin = new RectOffset(0, 0, 0, 0);
+                style.padding = new RectOffset(0, 0, 0, 0);
+                style.alignment = TextAnchor.MiddleCenter;
 
-            if(style != null) {
-                EveryplayWelcome window = (EveryplayWelcome)GetWindow(typeof(EveryplayWelcome), true, "Welcome to Everyplay!");
-                window.position = new Rect(196, 196, texture.width, texture.height);
-                window.minSize = new Vector2(texture.width, texture.height);
-                window.maxSize = new Vector2(texture.width, texture.height);
-                window.welcomeTexture2d = texture;
-                window.welcomeStyle = style;
-                window.Show();
+                if(style != null) {
+                    EditorPrefs.SetBool("EveryplayWelcomeShown", true);
+                    EveryplayWelcome window = (EveryplayWelcome)GetWindow(typeof(EveryplayWelcome), true, "Welcome to Everyplay!");
+                    window.position = new Rect(196, 196, texture.width, texture.height);
+                    window.minSize = new Vector2(texture.width, texture.height);
+                    window.maxSize = new Vector2(texture.width, texture.height);
+                    window.welcomeTexture2d = texture;
+                    window.welcomeStyle = style;
+                    window.Show();
+
+                    EveryplaySettingsEditor.ShowSettings();
+                }
             }
         }
     }

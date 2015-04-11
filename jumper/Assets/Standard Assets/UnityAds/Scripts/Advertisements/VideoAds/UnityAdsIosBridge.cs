@@ -7,62 +7,56 @@ namespace UnityEngine.Advertisements {
 
 	internal static class UnityAdsIosBridge {
 		[DllImport ("__Internal")]
-		public static extern void init (string gameId, bool testModeEnabled, bool debugModeEnabled, string gameObjectName);
+		public static extern void UnityAdsInit (string gameId, bool testModeEnabled, bool debugModeEnabled, string gameObjectName);
 		
 		[DllImport ("__Internal")]
-		public static extern bool show (string zoneId, string rewardItemKey, string options);
+		public static extern bool UnityAdsShow (string zoneId, string rewardItemKey, string options);
 		
 		[DllImport ("__Internal")]
-		public static extern void hide ();
+		public static extern void UnityAdsHide ();
 		
 		[DllImport ("__Internal")]
-		public static extern bool isSupported ();
+		public static extern bool UnityAdsIsSupported ();
 		
 		[DllImport ("__Internal")]
-		public static extern string getSDKVersion ();
+		public static extern string UnityAdsGetSDKVersion ();
 		
 		[DllImport ("__Internal")]
-		public static extern bool canShowAds (string network);
-		
-		[DllImport ("__Internal")]
-		public static extern bool canShow ();
-		
-		[DllImport ("__Internal")]
-		public static extern bool hasMultipleRewardItems ();
-		
-		[DllImport ("__Internal")]
-		public static extern string getRewardItemKeys ();
-		
-		[DllImport ("__Internal")]
-		public static extern string getDefaultRewardItemKey ();
-		
-		[DllImport ("__Internal")]
-		public static extern string getCurrentRewardItemKey ();
-		
-		[DllImport ("__Internal")]
-		public static extern bool setRewardItemKey (string rewardItemKey);
-		
-		[DllImport ("__Internal")]
-		public static extern void setDefaultRewardItemAsRewardItem ();
-		
-		[DllImport ("__Internal")]
-		public static extern string getRewardItemDetailsWithKey (string rewardItemKey);
-		
-		[DllImport ("__Internal")]
-		public static extern string getRewardItemDetailsKeys ();
+		public static extern bool UnityAdsCanShow ();
 
 		[DllImport ("__Internal")]
-		public static extern void setNetworks(string networks);
-
-    [DllImport ("__Internal")]
-    public static extern void setNetwork(string network);
+		public static extern bool UnityAdsCanShowZone (string zone);
 
 		[DllImport ("__Internal")]
-		public static extern void setDebugMode(bool debugMode);
+		public static extern bool UnityAdsHasMultipleRewardItems ();
+		
+		[DllImport ("__Internal")]
+		public static extern string UnityAdsGetRewardItemKeys ();
+		
+		[DllImport ("__Internal")]
+		public static extern string UnityAdsGetDefaultRewardItemKey ();
+		
+		[DllImport ("__Internal")]
+		public static extern string UnityAdsGetCurrentRewardItemKey ();
+		
+		[DllImport ("__Internal")]
+		public static extern bool UnityAdsSetRewardItemKey (string rewardItemKey);
+		
+		[DllImport ("__Internal")]
+		public static extern void UnityAdsSetDefaultRewardItemAsRewardItem ();
+		
+		[DllImport ("__Internal")]
+		public static extern string UnityAdsGetRewardItemDetailsWithKey (string rewardItemKey);
+		
+		[DllImport ("__Internal")]
+		public static extern string UnityAdsGetRewardItemDetailsKeys ();
 
 		[DllImport ("__Internal")]
-		public static extern void enableUnityDeveloperInternalTestMode ();
+		public static extern void UnityAdsSetDebugMode(bool debugMode);
+
+		[DllImport ("__Internal")]
+		public static extern void UnityAdsEnableUnityDeveloperInternalTestMode ();
 	}
- }
+}
 
 #endif

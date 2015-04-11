@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acd8acfcd4e348b1a989320194966af, type: 3}
   m_Name: EveryplaySettings
   m_EditorClassIdentifier: 
-  clientId: 92350dfe62ce7dce67ac593493af2024ff38ba89
-  clientSecret: 28264612347b6c43d13842e1c79c8f99f613fab6
+  clientId: 
+  clientSecret: 
   redirectURI: https://m.everyplay.com/auth
-  iosSupportEnabled: 1
-  androidSupportEnabled: 1
+  iosSupportEnabled: 0
+  androidSupportEnabled: 0
   testButtonsEnabled: 0

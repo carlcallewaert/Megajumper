@@ -3,7 +3,8 @@ using UnityEditor;
 using System.IO;
 using System.Collections;
 
-public class EveryplayLegacyCleanup : AssetPostprocessor
+[InitializeOnLoad]
+public class EveryplayLegacyCleanup
 {
     private static string[] filesToRemove = {
             "Editor/PostprocessBuildPlayer_EveryplaySDK",
@@ -150,31 +151,26 @@ public class EveryplayLegacyCleanup : AssetPostprocessor
     private const string oldPrefab = "Plugins/Everyplay/Everyplay.prefab";
     private const string newTestPrefab = "Plugins/Everyplay/Helpers/EveryplayTest.prefab";
 
-    void OnPreprocessTexture()
+    static EveryplayLegacyCleanup()
     {
-        // Don't compress Everyplay textures, makes importing faster
-        if(assetPath.Contains("Plugins/Everyplay")) {
-            TextureImporter textureImporter = (TextureImporter)assetImporter;
-            if(textureImporter != null) {
-                textureImporter.textureFormat = TextureImporterFormat.AutomaticTruecolor;
-            }
-        }
-
-        // Legacy clean (moving asset) often fails during package import, try to do it a couple of times pre import and one time post import
-        if(assetPath.Contains("Plugins/Everyplay/Images")) {
-            Clean(true);
-        }
+        EditorApplication.update += Update;
     }
 
-    static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
+    private static int editorFrames = 0;
+    private static int editorFramesToWait = 5;
+
+    private static void Update()
     {
-        // Legacy clean (moving asset) often fails during package import, try to do it a couple of times pre import and one time post import
-        foreach(string asset in importedAssets) {
-            if(asset.Trim().Equals("Assets/Plugins/Everyplay/Scripts/EveryplayLegacy.cs")) {
-                Clean(true);
-                EveryplayWelcome.ShowWelcome();
-                return;
-            }
+        if(editorFrames > editorFramesToWait) {
+            Clean(true);
+
+            EveryplayPostprocessor.ValidateEveryplayState(EveryplaySettingsEditor.LoadEveryplaySettings());
+            EveryplayWelcome.ShowWelcome();
+
+            EditorApplication.update -= Update;
+        }
+        else {
+            editorFrames++;
         }
     }
 

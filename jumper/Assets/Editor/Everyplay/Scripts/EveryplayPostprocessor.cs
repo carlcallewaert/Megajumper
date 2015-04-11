@@ -15,12 +15,12 @@ public static class EveryplayPostprocessor
     [PostProcessBuild(1080)]
     public static void OnPostProcessBuild(BuildTarget target, string path)
     {
-        EveryplaySettings settings = (EveryplaySettings)Resources.Load(EveryplaySettingsEditor.settingsFile);
+        EveryplaySettings settings = EveryplaySettingsEditor.LoadEveryplaySettings();
 
         if(settings != null) {
             if(settings.IsEnabled) {
                 if(settings.IsValid) {
-                    if(target == BuildTarget.iPhone) {
+                    if(target == kBuildTargetIOS) {
                         PostProcessBuild_iOS(path, settings.clientId);
                     }
                     else if(target == BuildTarget.Android) {
@@ -29,15 +29,11 @@ public static class EveryplayPostprocessor
                 }
                 else {
                     Debug.LogError("Everyplay will be disabled because client id, client secret or redirect URI was not valid.");
-                    if(target == BuildTarget.iPhone) {
-                        SetEveryplayEnabledForTarget(BuildTargetGroup.iPhone, false);
-                    }
-                    else if(target == BuildTarget.Android) {
-                        SetEveryplayEnabledForTarget(BuildTargetGroup.Android, false);
-                    }
                 }
             }
         }
+
+        ValidateEveryplayState(settings);
     }
 
     [PostProcessBuild(-10)]
@@ -45,19 +41,20 @@ public static class EveryplayPostprocessor
     {
         EveryplayLegacyCleanup.Clean(false);
 
-        if(target == BuildTarget.iPhone || target == BuildTarget.Android) {
+        if(target == kBuildTargetIOS || target == BuildTarget.Android) {
             ValidateAndUpdateFacebook();
 
-            if(target == BuildTarget.iPhone) {
+            if(target == kBuildTargetIOS) {
                 FixUnityPlistAppendBug(path);
             }
         }
     }
 
+    #if (UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1  || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6)
     [PostProcessScene]
     public static void OnPostprocessScene()
     {
-        EveryplaySettings settings = (EveryplaySettings)Resources.Load(EveryplaySettingsEditor.settingsFile);
+        EveryplaySettings settings = EveryplaySettingsEditor.LoadEveryplaySettings();
 
         if(settings != null) {
             if(settings.IsValid && settings.IsEnabled) {
@@ -66,20 +63,68 @@ public static class EveryplayPostprocessor
             }
         }
     }
+    #endif
 
     private static void PostProcessBuild_iOS(string path, string clientId)
     {
+        // Disable PluginImporter on iOS and use xCode editor instead
+        //#if (UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1  || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6)
         bool osxEditor = (Application.platform == RuntimePlatform.OSXEditor);
         CreateModFile(path, !osxEditor || !EditorUserBuildSettings.symlinkLibraries);
         CreateEveryplayConfig(path);
         ProcessXCodeProject(path);
+        //#endif
         ProcessInfoPList(path, clientId);
-        SetEveryplayEnabledForTarget(BuildTargetGroup.iPhone, true);
     }
 
     private static void PostProcessBuild_Android(string path, string clientId)
     {
-        SetEveryplayEnabledForTarget(BuildTargetGroup.Android, true);
+
+    }
+
+    public static void SetPluginImportEnabled(BuildTarget buildTarget, bool enabled)
+    {
+        #if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6)
+        try {
+            PluginImporter[] pluginImporters = PluginImporter.GetAllImporters();
+
+            foreach(PluginImporter pluginImporter in pluginImporters) {
+                bool everyplayIosPluginImporter = pluginImporter.assetPath.Contains("Plugins/Everyplay/iOS");
+                bool everyplayAndroidPluginImporter = pluginImporter.assetPath.Contains("Plugins/Android/everyplay");
+
+                if(everyplayIosPluginImporter || everyplayAndroidPluginImporter) {
+                    pluginImporter.SetCompatibleWithAnyPlatform(false);
+                    pluginImporter.SetCompatibleWithEditor(false);
+
+                    if((buildTarget == kBuildTargetIOS) && everyplayIosPluginImporter) {
+                        pluginImporter.SetCompatibleWithPlatform(buildTarget, enabled);
+
+                        if(enabled) {
+                            string frameworkDependencies =  "AssetsLibrary;" +
+                                                            "MessageUI;" +
+                                                            "Security;" +
+                                                            "StoreKit;";
+
+                            string weakFrameworkDependencies =  "Social;" +
+                                                                "AdSupport;" +
+                                                                "CoreImage;" +
+                                                                "Twitter;" +
+                                                                "Accounts;";
+
+                            // Is there a way to make some dependencies weak in PluginImporter?
+                            pluginImporter.SetPlatformData(kBuildTargetIOS, "FrameworkDependencies", frameworkDependencies + weakFrameworkDependencies);
+                        }
+                    }
+                    else if((buildTarget == BuildTarget.Android) && everyplayAndroidPluginImporter) {
+                        pluginImporter.SetCompatibleWithPlatform(buildTarget, enabled);
+                    }
+                }
+            }
+        }
+        catch(Exception e) {
+            Debug.Log("Changing plugin import settings failed: " + e);
+        }
+        #endif
     }
 
     private static void CreateEveryplayConfig(string path)
@@ -477,11 +522,14 @@ public static class EveryplayPostprocessor
     {
         string targetDefine = "";
 
-        if(target == BuildTargetGroup.iPhone) {
+        if(target == kBuildTargetGroupIOS) {
             targetDefine = "EVERYPLAY_IPHONE";
+            // Disable PluginImporter on iOS and use xCode editor instead
+            //SetPluginImportEnabled(kBuildTargetIOS, enabled);
         }
         else if(target == BuildTargetGroup.Android) {
             targetDefine = "EVERYPLAY_ANDROID";
+            SetPluginImportEnabled(BuildTarget.Android, enabled);
         }
 
         #if UNITY_3_5
@@ -490,6 +538,20 @@ public static class EveryplayPostprocessor
         #else
         SetScriptingDefineSymbolForTarget(target, targetDefine, enabled);
         #endif
+    }
+
+    public static void ValidateEveryplayState(EveryplaySettings settings) {
+        if(settings != null && settings.IsValid) {
+            EveryplayPostprocessor.SetEveryplayEnabledForTarget(kBuildTargetGroupIOS, settings.iosSupportEnabled);
+            EveryplayPostprocessor.SetEveryplayEnabledForTarget(BuildTargetGroup.Android, settings.androidSupportEnabled);
+        }
+        else {
+            EveryplayPostprocessor.SetEveryplayEnabledForTarget(kBuildTargetGroupIOS, false);
+            EveryplayPostprocessor.SetEveryplayEnabledForTarget(BuildTargetGroup.Android, false);
+        }
+
+        // Disable PluginImporter on iOS and use xCode editor instead
+        SetPluginImportEnabled(kBuildTargetIOS, false);
     }
 
     private static void SetScriptingDefineSymbolForTarget(BuildTargetGroup target, string targetDefine, bool enabled)
@@ -717,4 +779,7 @@ public static class EveryplayPostprocessor
     private const string FacebookAppId = "182473845211109";
     private const string UrlSchemePrefixFB = "fb182473845211109ep";
     private const string UrlSchemePrefixEP = "ep";
+
+    private const BuildTarget kBuildTargetIOS = (BuildTarget)9; // Avoid automatic API updater dialog (iPhone -> iOS)
+    private const BuildTargetGroup kBuildTargetGroupIOS = (BuildTargetGroup)4; // Avoid automatic API updater dialog (iPhone -> iOS)
 }

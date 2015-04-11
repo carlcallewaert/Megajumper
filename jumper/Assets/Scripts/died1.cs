@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class died1 : MonoBehaviour {
@@ -26,24 +26,22 @@ public class died1 : MonoBehaviour {
 		{
 		anim.SetTrigger("died");
 
-		rigidbody2D.isKinematic = true;
-		collider2D.enabled = false;
+		GetComponent<Rigidbody2D>().isKinematic = true;
+		GetComponent<Collider2D>().enabled = false;
 
 		endmenu.SetActive(true);
 		ingamedisplay.SetActive(false);
 		buttonup.SetActive(false);
 		buttondown.SetActive(false);
 
-		audio.PlayOneShot(died, 3.0F);
-
-			// wait 2 second to stop recording
-			Invoke ("StopRecording", 2f);
-			
-		}
-	}
-	
-	void StopRecording()
-	{
+		GetComponent<AudioSource>().PlayOneShot(died, 3.0F);
+		
 		Everyplay.StopRecording();
-	}
+		//Everyplay.SetMetadata("score", score);
+		//Everyplay.PlayLastRecording();
+
+		}
+
+
+}
 }

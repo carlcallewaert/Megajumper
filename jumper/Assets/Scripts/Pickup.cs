@@ -7,7 +7,7 @@ public class Pickup : MonoBehaviour
 {
 
 	public Text scoretext;						// The amount of cans we wil pick up
-	private float score; 
+	public float score; 
 	public Text scoretextfinal;
 	public GameObject particle ;
 	public AudioClip CollectSound ;

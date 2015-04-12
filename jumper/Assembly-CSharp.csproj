@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\startgame.cs" />
      <Compile Include="Assets\Scripts\viewreply.cs" />
      <Compile Include="Assets\ShurikenMagic\Scripts\SetParticleSortingLayer.cs" />
+     <Compile Include="Assets\UnityAnalyticsIntegration.cs" />
      <None Include="Assets\Plugins\Android\everyplay\res\drawable\everyplay_video_buttonbar_button.xml" />
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_slimprogressbar.xml" />
      <None Include="Assets\Plugins\Android\unityads\proguard-project.txt" />
@@ -146,6 +147,12 @@
      <None Include="Assets\Plugins\Android\everyplay\res\layout\everyplay_auth_layout.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Cloud.Analytics">
+ <HintPath>/Users/carlcallewaert/Megajumper/jumper/Assets/Plugins/UnityEngine.Cloud.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Cloud.Analytics.Util">
+ <HintPath>/Users/carlcallewaert/Megajumper/jumper/Assets/Plugins/UnityEngine.Cloud.Analytics.Util.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

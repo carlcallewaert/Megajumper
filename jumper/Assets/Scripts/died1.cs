@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Cloud.Analytics;
+using System.Collections.Generic;
+
 
 public class died1 : MonoBehaviour {
 
@@ -35,10 +38,20 @@ public class died1 : MonoBehaviour {
 		buttondown.SetActive(false);
 
 		GetComponent<AudioSource>().PlayOneShot(died, 3.0F);
+
+		int totalcans = Pickup.score;
+
+			UnityAnalytics.CustomEvent("gameOver", new Dictionary<string, object>
+			                           {
+				{ "totalcan", totalcans },
+
+			});
 		
 		Everyplay.StopRecording();
 		//Everyplay.SetMetadata("score", score);
 		//Everyplay.PlayLastRecording();
+
+
 
 		}
 
